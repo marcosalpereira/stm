@@ -1,0 +1,18 @@
+<div class="ui-g">
+  <div class="ui-g-12">Match</div>
+</div>
+<div class="ui-g">
+  <div class="ui-g-12">
+    <stm-match-score [match]="match"></stm-match-score>
+  </div>
+</div>
+<div class="ui-g">
+
+  <div class="ui-g-6">
+    <stm-match-events [match]="match" [player]="match.playerA"></stm-match-events>
+  </div>
+
+  <div class="ui-g-6">
+      <stm-match-events [match]="match" [player]="match.playerB"></stm-match-events>
+  </div>
+</div>
