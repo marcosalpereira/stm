@@ -14,6 +14,7 @@ import { MatchControlComponent } from './components/match/match-control.componen
 import { MatchEventsComponent } from './components/match/match-events.component';
 import { MatchScoreComponent } from './components/match/match-score.component';
 import {ButtonModule} from 'primeng/button';
+import { DataService } from './data.service';
 
 const routes: Routes = [
   { path: 'matches', component: MatchesComponent },
@@ -39,7 +40,7 @@ const routes: Routes = [
     PanelModule,
     ButtonModule
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

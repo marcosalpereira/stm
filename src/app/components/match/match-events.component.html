@@ -1,25 +1,25 @@
 <div class="ui-g">
   <div class="ui-g-12">
-      <p-panel class="text-center" [header]="player.name">
-          <div class="ui-g">
-              <div class="ui-g-4">
-                <button type="button" pButton class="ui-button-success">Ace</button>
-              </div>
-              <div class="ui-g-4">
-                <button type="button" pButton class="ui-button-success">W-BH</button>
-              </div>
-              <div class="ui-g-4">
-                <button type="button" pButton class="ui-button-success">W-FH</button>
-              </div>
-            </div>
-            <div class="ui-g">
-              <div class="ui-g-4">
-                <button type="button" pButton class="ui-button-danger">E-FH</button>
-              </div>
-              <div class="ui-g-4">
-                <button type="button" pButton class="ui-button-danger">E-BH</button>
-              </div>
-            </div>
-      </p-panel>      
+    <p-panel class="text-center" [header]="player.name">
+      <div class="ui-g">
+        <div class="ui-g-4">
+          <button type="button" pButton class="ui-button-success" (click)="onClick('ace')">Ace</button>
+        </div>
+        <div class="ui-g-4">
+          <button type="button" pButton class="ui-button-success" (click)="onClick('wbh')" title="Winner backhand">W-BH</button>
+        </div>
+        <div class="ui-g-4">
+          <button type="button" pButton class="ui-button-success" (click)="onClick('wfh')" title="Winner forehand">W-FH</button>
+        </div>
+      </div>
+      <div class="ui-g">
+        <div class="ui-g-4">
+          <button type="button" pButton class="ui-button-danger" (click)="onClick('efh')" title="Error forehand">E-FH</button>
+        </div>
+        <div class="ui-g-4">
+          <button type="button" pButton class="ui-button-danger" (click)="onClick('ebh')" title="Error backhand">E-BH</button>
+        </div>
+      </div>
+    </p-panel>
   </div>
 </div>
