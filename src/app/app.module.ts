@@ -13,12 +13,17 @@ import { MatchesComponent } from './components/match/matches.component';
 import { MatchControlComponent } from './components/match/match-control.component';
 import { MatchEventsComponent } from './components/match/match-events.component';
 import { MatchScoreComponent } from './components/match/match-score.component';
-import {ButtonModule} from 'primeng/button';
-import { DataService } from './data.service';
+import { ButtonModule } from 'primeng/button';
+
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { environment } from 'src/environments/environment';
+import { SetScoreComponent } from './components/match/set-score.component';
 
 const routes: Routes = [
   { path: 'matches', component: MatchesComponent },
-  { path: 'match-control', component: MatchControlComponent},
+  { path: 'match-control', component: MatchControlComponent },
   { path: '', redirectTo: 'match-control', pathMatch: 'full' }
 ];
 
@@ -32,15 +37,19 @@ const routes: Routes = [
     MatchesComponent,
     MatchEventsComponent,
     MatchScoreComponent,
+    SetScoreComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(routes),
     PanelModule,
-    ButtonModule
+    ButtonModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
   ],
-  providers: [DataService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

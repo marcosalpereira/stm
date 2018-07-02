@@ -7,7 +7,7 @@
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
-      "prefix": "sts",
+      "prefix": "stm",
       "schematics": {},
       "architect": {
         "build": {

@@ -1,8 +1,7 @@
 <div *ngFor="let set of match.sets">
   <div class="ui-g">
-    <div class="ui-g-4 set-score">{{set.gamesA}}</div>
-  </div> 
-  <div class="ui-g">
-    <div class="ui-g-4 set-score">{{set.gamesB}}</div>
+    <div class="ui-g-4 set-score">
+      <stm-set-score [set]="set"></stm-set-score>
+    </div>
   </div>
 </div>

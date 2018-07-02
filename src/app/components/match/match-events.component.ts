@@ -19,7 +19,10 @@ export class MatchEventsComponent implements OnInit {
   }
 
   onClick(evento: EventType) {
-    this.dataService.matchEvent(this.match, this.player, evento);
+    const matchEvent = {
+      player: this.player.playerMatch, event: evento
+    };
+    this.dataService.matchEvent(this.match, matchEvent);
   }
 
 }
