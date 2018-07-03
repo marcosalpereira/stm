@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { MatchSet } from 'src/app/model/match';
+import { MatchSet, PlayerMatch } from 'src/app/model/match';
 
 @Component({
   selector: 'stm-set-score',
@@ -10,6 +10,9 @@ export class SetScoreComponent implements OnInit {
 
   @Input()
   set: MatchSet;
+
+  @Input()
+  player: PlayerMatch;
 
   constructor() { }
 
