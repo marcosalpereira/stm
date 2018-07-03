@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { MatchSet, Match, PlayerMatch, MatchEvent, MatchGame } from './model/match';
 import { Player } from './model/player';
 import { StorageService } from 'src/app/storage.service';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +11,10 @@ export class DataService {
   matchChange$ = new Subject<Match>();
 
   constructor(private storageService: StorageService) { }
+
+  listMatches(): Observable<Match[]> {
+    return this.storageService.list();
+  }
 
   matchEvent(match: Match, event: MatchEvent): void {
     let pontuador: PlayerMatch;

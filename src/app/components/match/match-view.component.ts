@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'stm-match-view',
+  selector: 'tsm-match-view',
   templateUrl: './match-view.component.html',
   styleUrls: ['./match-view.component.css']
 })

@@ -6,6 +6,7 @@ export class Match {
     public static readonly PLAYER_B: PlayerMatch = 1;
     public static readonly GAME_SCORES = [0, 15, 30, 40];
 
+    public id: string;
     public finished = false;
     public score = [0, 0];
     public winner: PlayerMatch;
@@ -16,7 +17,6 @@ export class Match {
     public superTieBreak = true;
     public sets: MatchSet[] = [new MatchSet(1)];
     constructor(
-        public id: string,
         public championship: Championship,
         public playerA: Player,
         public playerB: Player) { }

@@ -2,7 +2,7 @@ import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/cor
 import { MatchSet, PlayerMatch, MatchGame } from 'src/app/model/match';
 
 @Component({
-  selector: 'stm-set-score',
+  selector: 'tsm-set-score',
   templateUrl: './set-score.component.html',
   styleUrls: ['./set-score.component.css']
 })

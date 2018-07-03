@@ -4,7 +4,7 @@ import { Player } from 'src/app/model/player';
 import { DataService } from '../../data.service';
 
 @Component({
-  selector: 'stm-match-events',
+  selector: 'tsm-match-events',
   templateUrl: './match-events.component.html',
   styleUrls: ['./match-events.component.css']
 })

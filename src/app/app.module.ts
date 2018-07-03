@@ -25,8 +25,9 @@ import { CommonModule } from '@angular/common';
 
 const routes: Routes = [
   { path: 'matches', component: MatchesComponent },
-  { path: 'match-control', component: MatchControlComponent },
-  { path: '', redirectTo: 'match-control', pathMatch: 'full' }
+  { path: 'matches/:id/control', component: MatchControlComponent },
+  { path: 'matches/:id', component: MatchViewComponent },
+  { path: '', redirectTo: 'matches', pathMatch: 'full' }
 ];
 
 

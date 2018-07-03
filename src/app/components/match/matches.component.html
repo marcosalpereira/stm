@@ -1,3 +1,9 @@
-<p>
-  matches works!
-</p>
+<p-panel class="text-center" header="Matches">
+  <ul>
+    <li *ngFor="let match of matches | async">
+      {{match.championship.name}} - {{match.playerA.name}} X {{match.playerB.name}}
+      <button [routerLink]="['/matches', match.id, 'control']">Control</button>
+      <button [routerLink]="['/matches', match.id]"           >Watch</button>
+    </li>
+  </ul>
+</p-panel>

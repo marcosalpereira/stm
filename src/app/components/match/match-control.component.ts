@@ -4,7 +4,7 @@ import { Player } from 'src/app/model/player';
 import { Championship } from '../../model/championship';
 
 @Component({
-  selector: 'stm-match-control',
+  selector: 'tsm-match-control',
   templateUrl: './match-control.component.html',
   styleUrls: ['./match-control.component.css']
 })

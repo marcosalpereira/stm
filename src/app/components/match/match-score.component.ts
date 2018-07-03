@@ -4,7 +4,7 @@ import { DataService } from 'src/app/data.service';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'stm-match-score',
+  selector: 'tsm-match-score',
   templateUrl: './match-score.component.html',
   styleUrls: ['./match-score.component.css']
 })
