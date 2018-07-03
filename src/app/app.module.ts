@@ -20,6 +20,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from 'src/environments/environment';
 import { SetScoreComponent } from './components/match/set-score.component';
+import { GameScorePipe } from './pipes/match/game-score.pipe';
 
 const routes: Routes = [
   { path: 'matches', component: MatchesComponent },
@@ -38,6 +39,7 @@ const routes: Routes = [
     MatchEventsComponent,
     MatchScoreComponent,
     SetScoreComponent,
+    GameScorePipe,
   ],
   imports: [
     BrowserModule,

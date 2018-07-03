@@ -1,6 +1,6 @@
 <div *ngFor="let p of [0, 1]">
   <div class="ui-g">
-    <div class="ui-g-12" match-score>{{match.score[p]}}</div>
+    <div class="ui-g-12 match-score">{{match.score[p]}}</div>
     <div *ngFor="let set of match.sets">
       <div class="ui-g-12">
         <stm-set-score [set]="set" [player]="p"></stm-set-score>

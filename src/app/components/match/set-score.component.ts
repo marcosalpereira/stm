@@ -1,12 +1,12 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { MatchSet, PlayerMatch } from 'src/app/model/match';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { MatchSet, PlayerMatch, MatchGame } from 'src/app/model/match';
 
 @Component({
   selector: 'stm-set-score',
   templateUrl: './set-score.component.html',
   styleUrls: ['./set-score.component.css']
 })
-export class SetScoreComponent implements OnInit {
+export class SetScoreComponent implements OnInit, OnChanges {
 
   @Input()
   set: MatchSet;
@@ -14,9 +14,15 @@ export class SetScoreComponent implements OnInit {
   @Input()
   player: PlayerMatch;
 
+  lastGame: MatchGame;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.lastGame = this.set.games[this.set.games.length - 1];
   }
 
 }
