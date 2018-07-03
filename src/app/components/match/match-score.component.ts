@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { Match } from 'src/app/model/match';
+import { Match, MatchGame, MatchSet } from 'src/app/model/match';
 import { DataService } from 'src/app/data.service';
 import { Subscription } from 'rxjs';
 
@@ -17,8 +17,14 @@ export class MatchScoreComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.matchChangeSub = this.dataService.matchChange$.subscribe(
-      match => this.match = match
+      match => {
+        this.match = match;
+      }
     );
+  }
+
+  lastGame(set: MatchSet): MatchGame {
+    return set.games[set.games.length - 1];
   }
 
   ngOnDestroy() {

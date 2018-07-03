@@ -22,18 +22,18 @@ export class DataService {
       pontuador = otherPlayer;
     }
 
-    const set = getLastSet(match);
-    const game = getLastGame(set);
+    const lastSet = getLastSet(match);
+    const lastGame = getLastGame(lastSet);
 
-    if (game.tiebreak) {
-      advanceGameScoreTiebreakPoint(game, pontuador, otherPlayer, getMaxTieBreakPoints(match));
+    if (lastGame.tiebreak) {
+      advanceGameScoreTiebreakPoint(lastGame, pontuador, otherPlayer, getMaxTieBreakPoints(match));
     } else {
-      advanceGameScoreNormalPoint(game, pontuador, otherPlayer);
+      advanceGameScoreNormalPoint(lastGame, pontuador, otherPlayer);
     }
 
-    if (game.finished) {
-      advanceSetScore(set, pontuador, otherPlayer);
-      if (set.finished) {
+    if (lastGame.finished) {
+      advanceSetScore(lastSet, pontuador, otherPlayer);
+      if (lastSet.finished) {
         advanceMatchScore(match, pontuador, otherPlayer);
         if (match.finished) {
           match.endDate = new Date();
@@ -42,7 +42,7 @@ export class DataService {
           match.sets.push(new MatchSet(match.sets.length + 1));
         }
       } else {
-        set.games.push(new MatchGame(set.games.length + 1, getOtherPlayer(game.serving)));
+        lastSet.games.push(new MatchGame(lastSet.games.length + 1, getOtherPlayer(lastGame.serving)));
       }
     }
 
@@ -74,7 +74,7 @@ function advanceGameScoreTiebreakPoint(game: MatchGame, pontuador: PlayerMatch, 
 function advanceScore(gameOrSet: MatchSet | MatchGame, pontuador: PlayerMatch, otherPlayer: PlayerMatch, maxPoints: number) {
   gameOrSet.score[pontuador]++;
   if (gameOrSet.score[pontuador] >= maxPoints
-    && (gameOrSet.score[pontuador] - gameOrSet.score[otherPlayer]) === 2) {
+    && (gameOrSet.score[pontuador] - gameOrSet.score[otherPlayer]) >= 2) {
     gameOrSet.finished = true;
   }
 }
@@ -92,7 +92,7 @@ function advanceGameScoreNormalPoint(game: MatchGame, pontuador: PlayerMatch, ot
     game.score[pontuador]++;
 
   } else {
-    if (game.advantage === pontuador) {
+    if (game.score[otherPlayer] !== 3 || game.advantage === pontuador) {
       game.finished = true;
 
     } else if (game.advantage === otherPlayer) {
@@ -109,13 +109,9 @@ function getLastSet(match: Match): MatchSet {
 }
 
 function getLastGame(set: MatchSet): MatchGame {
-  return set.games[set.games.length - 1];
-}
-
-function isTieBreak(match: Match) {
-  const set = getLastSet(match);
-  return set.score[0] === 6
-      && set.score[1] === 6;
+  const game = set.games[set.games.length - 1];
+  game.tiebreak = set.score[0] === 6 && set.score[1] === 6;
+  return game;
 }
 
 function getOtherPlayer(player: PlayerMatch): PlayerMatch {

@@ -4,6 +4,6 @@
         <div class="tiebreak-score" class.finished="set.finished">{{lastGame.score[player]}}</div>
     </div>
     <div *ngIf="!lastGame.tiebreak">
-            <div class="normal-game-score">{{lastGame || gameScore : player}}</div>
+            <div class="normal-game-score">{{lastGame | gameScore : player}}</div>
     </div>
 </div>

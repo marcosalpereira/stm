@@ -1,0 +1,38 @@
+.score {
+    border: 1px solid black;
+    width: 30px;
+    height: 35px;
+    padding: 7px 0px 0px 0px;
+    text-align: center;
+    vertical-align: middle;
+    margin-right: 2px;
+    margin-bottom: 2px
+}
+
+.score.match {
+    background-color: black;
+    color: white;
+    margin-right: 5px;
+}
+
+.score.set {
+    background-color: white;
+    color: blue;
+}
+
+.score.tiebreak.finished {
+    position: relative;
+    top: -0.5em;
+    font-size: 80%;
+}
+
+.score.tiebreak {
+    background-color: yellow;
+    color: blue;
+}
+
+.score.normal {
+    background-color: yellow;
+    color: blue;
+}
+

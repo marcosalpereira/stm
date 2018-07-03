@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Match } from 'src/app/model/match';
 import { Player } from 'src/app/model/player';
+import { Championship } from '../../model/championship';
 
 @Component({
   selector: 'stm-match-control',
@@ -14,11 +15,11 @@ export class MatchControlComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    const champ = new Championship('ASES 2018.2');
     this.match =
-      new Match(
+      new Match('1', champ,
           new Player('Foo', Match.PLAYER_A),
           new Player('Bar', Match.PLAYER_B));
-    console.log(this.match);
   }
 
 }

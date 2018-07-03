@@ -1,10 +1,12 @@
-<div *ngFor="let p of [0, 1]">
-  <div class="ui-g">
-    <div class="ui-g-12 match-score">{{match.score[p]}}</div>
-    <div *ngFor="let set of match.sets">
-      <div class="ui-g-12">
-        <stm-set-score [set]="set" [player]="p"></stm-set-score>
+<div class="ui-g" *ngFor="let player of [0, 1]">
+    <div class="ui-g-12 score match">{{match.score[player]}}</div>
+    <ng-container *ngFor="let set of match.sets; let i=index">
+      <div class="ui-g-12 score set">{{set.score[player]}}</div>
+      <div *ngIf="lastGame(set).tiebreak" class="ui-g-12 score tiebreak" class.finished="set.finished">
+        {{lastGame(set).score[player]}}
       </div>
-    </div>
+      <div *ngIf="i === match.sets.length - 1 && !lastGame(set).tiebreak" class="ui-g-12 score normal">
+        {{lastGame(set) | gameScore : player}}
+      </div>
+    </ng-container>
   </div>
-</div>
