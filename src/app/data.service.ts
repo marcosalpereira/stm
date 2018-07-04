@@ -53,6 +53,11 @@ export class DataService {
     this.storageService.persist(match);
     this.matchChange$.next(match);
   }
+
+  persist(match: Match): void {
+    this.storageService.persist(match);
+  }
+
 }
 
 function advanceMatchScore(match: Match, pontuador: PlayerMatch, otherPlayer: PlayerMatch) {

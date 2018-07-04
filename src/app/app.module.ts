@@ -1,14 +1,18 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import {CheckboxModule} from 'primeng/checkbox';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 
+import { FormsModule } from '@angular/forms'
+
 import { Routes, RouterModule } from '@angular/router';
 
 import { PanelModule } from 'primeng/panel';
-import { MatchViewComponent } from './components/match/match-view.component';
+import { MatchWatchComponent } from './components/match/match-watch.component';
 import { MatchesComponent } from './components/match/matches.component';
 import { MatchControlComponent } from './components/match/match-control.component';
 import { MatchEventsComponent } from './components/match/match-events.component';
@@ -22,11 +26,14 @@ import { environment } from 'src/environments/environment';
 import { SetScoreComponent } from './components/match/set-score.component';
 import { GameScorePipe } from './pipes/match/game-score.pipe';
 import { CommonModule } from '@angular/common';
+import { MatchEditComponent } from './components/match/match-edit.component';
+import {SpinnerModule} from 'primeng/spinner';
 
 const routes: Routes = [
   { path: 'matches', component: MatchesComponent },
   { path: 'matches/:id/control', component: MatchControlComponent },
-  { path: 'matches/:id', component: MatchViewComponent },
+  { path: 'matches/new', component: MatchEditComponent },
+  { path: 'matches/:id', component: MatchWatchComponent },
   { path: '', redirectTo: 'matches', pathMatch: 'full' }
 ];
 
@@ -35,21 +42,23 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     MatchControlComponent,
-    MatchViewComponent,
-    MatchViewComponent,
+    MatchWatchComponent,
+    MatchWatchComponent,
     MatchesComponent,
     MatchEventsComponent,
     MatchScoreComponent,
     SetScoreComponent,
     GameScorePipe,
+    MatchEditComponent,
   ],
   imports: [
-    CommonModule,
+    CommonModule,CheckboxModule,
+    FormsModule,
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(routes),
     PanelModule,
-    ButtonModule,
+    ButtonModule, SpinnerModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule

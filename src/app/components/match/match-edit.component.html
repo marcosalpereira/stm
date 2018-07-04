@@ -1,0 +1,46 @@
+<form #form="ngForm" (ngSubmit)="onSubmit()">
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <span class="ui-float-label">
+        <input id="champ" type="text" [(ngModel)]="match.championship.name" pInputText required>
+        <label for="champ">Campeonato</label>
+      </span>
+    </div>
+  </div>
+  <div class="ui-g">
+    <div class="ui-g-6">
+      <span class="ui-float-label">
+        <input id="playerA" type="text" [(ngModel)]="match.playerA.name" pInputText required>
+        <label for="playerA">Jogador 1</label>
+      </span>
+    </div>
+    <div class="ui-g-6">
+      <span class="ui-float-label">
+        <input id="playerB" type="text" [(ngModel)]="match.playerB.name" pInputText required>
+        <label for="playerB">Jogador 2</label>
+      </span>
+    </div>
+  </div>
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <span class="ui-float-label">
+        <p-spinner id="bestOf" name="bestOf" [(ngModel)]="match.bestOf" required></p-spinner>
+        <label for="bestOf">Melhor de quantos sets</label>
+      </span>
+    </div>
+  </div>
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <span class="ui-float-label">
+        <p-checkbox name="superTieBreak" id="superTieBreak" [(ngModel)]="match.superTieBreak" binary="true"></p-checkbox>
+        <label for="bestOf">Super Tie Break no set decisivo?</label>
+      </span>
+    </div>
+  </div>
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <button pButton type="submit" label="Salvar"></button>
+    </div>
+  </div>
+
+</form>

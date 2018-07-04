@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireObject, AngularFireList } from 'angularfire2/database';
-import { Match } from 'src/app/model/match';
+import { Match, Matches } from 'src/app/model/match';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -8,21 +8,31 @@ import { Observable } from 'rxjs';
 })
 export class StorageService {
 
-  private matchRef: AngularFireObject<Match>;
-  private match: Observable<Match>;
-  private matchesRef: AngularFireList<Match>;
+  private matchesRef: AngularFireObject<Matches>;
+  // private matchRef: AngularFireObject<Match>;
+  // private match: Observable<Match>;
+  // private matchesRef: AngularFireList<Match>;
 
   constructor(private db: AngularFireDatabase) {
-    this.matchesRef = db.list('matches');
-    // this.matchRef = db.object('match');
+    // this.matchesRef = db.list('matches');
+    this.matchesRef = db.object('matches');
     // this.match = this.matchRef.valueChanges();
   }
 
-  list(): Observable<Match[]> {
+  getMatches(): Observable<Matches> {
     return this.matchesRef.valueChanges();
   }
 
+  persistMatches(matches: Matches) {
+    this.matchesRef.set(matches);
+  }
+
   persist(match: Match): void {
-    this.matchRef.set(match);
+    match.id = new Date().getTime();
+    this.matchesRef.push(match);
+  }
+
+  findMatch(id: number): Observable<Match> {
+    return this.matchesRef.query.equalTo(id, 'id').once(;
   }
 }

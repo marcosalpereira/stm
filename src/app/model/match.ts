@@ -1,12 +1,16 @@
 import { Player } from './player';
 import { Championship } from './championship';
 
+export class Matches {
+    public matches: string[] = [];
+}
+
 export class Match {
     public static readonly PLAYER_A: PlayerMatch = 0;
     public static readonly PLAYER_B: PlayerMatch = 1;
     public static readonly GAME_SCORES = [0, 15, 30, 40];
 
-    public id: string;
+    public id: number;
     public finished = false;
     public score = [0, 0];
     public winner: PlayerMatch;

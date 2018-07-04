@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Match } from 'src/app/model/match';
 import { Player } from 'src/app/model/player';
 import { Championship } from '../../model/championship';
+import { ActivatedRoute } from '@angular/router';
+import { DataService } from '../../data.service';
 
 @Component({
   selector: 'tsm-match-control',
@@ -12,14 +14,14 @@ export class MatchControlComponent implements OnInit {
 
   match: Match;
 
-  constructor() { }
+  constructor(
+    private activeRoute: ActivatedRoute,
+    private dataService: DataService) { }
 
   ngOnInit() {
-    const champ = new Championship('ASES 2018.2');
-    this.match =
-      new Match('1', champ,
-          new Player('Foo', Match.PLAYER_A),
-          new Player('Bar', Match.PLAYER_B));
+    const param = this.activeRoute.snapshot.paramMap;
+    const id = param.get('id');
+    this.dataService.findMatch(id)
   }
 
 }

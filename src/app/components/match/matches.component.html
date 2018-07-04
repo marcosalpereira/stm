@@ -1,4 +1,5 @@
 <p-panel class="text-center" header="Matches">
+  <button [routerLink]="['/matches', 'new']">New</button>
   <ul>
     <li *ngFor="let match of matches | async">
       {{match.championship.name}} - {{match.playerA.name}} X {{match.playerB.name}}
