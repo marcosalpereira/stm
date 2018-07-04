@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { DataService } from 'src/app/data.service';
-import { Match } from 'src/app/model/match';
+import { Match, Matches } from 'src/app/model/match';
 
 @Component({
   selector: 'tsm-matches',
@@ -9,12 +9,12 @@ import { Match } from 'src/app/model/match';
   styleUrls: ['./matches.component.css']
 })
 export class MatchesComponent implements OnInit {
-  matches: Observable<Match[]>;
+  matches: Matches;
 
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
-    this.matches = this.dataService.listMatches();
+    this.dataService.listMatches().subscribe(matches => this.matches = matches);
   }
 
 }

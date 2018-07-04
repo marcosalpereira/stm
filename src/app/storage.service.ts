@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireObject, AngularFireList } from 'angularfire2/database';
 import { Match, Matches } from 'src/app/model/match';
 import { Observable } from 'rxjs';
+import { first } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -23,16 +24,33 @@ export class StorageService {
     return this.matchesRef.valueChanges();
   }
 
-  persistMatches(matches: Matches) {
-    this.matchesRef.set(matches);
+  private addMatch(match: Match) {
+    this.getMatches().pipe(first()).subscribe(matches => {
+      console.log('matches', matches);
+      if (!matches) {
+        matches = new Matches();
+      }
+      matches.list.push({'matchId': match.id, 'matchName': getMatchName(match)});
+      this.matchesRef.set(matches);
+    });
   }
 
   persist(match: Match): void {
-    match.id = new Date().getTime();
-    this.matchesRef.push(match);
+    let newId: number;
+    if (!match.id) {
+      match.id = new Date().getTime();
+      this.addMatch(match);
+    }
+    const matchRef = this.db.object(`match-${match.id}`);
+    matchRef.set(match);
   }
 
   findMatch(id: number): Observable<Match> {
-    return this.matchesRef.query.equalTo(id, 'id').once(;
+    const matchRef: AngularFireObject<Match> = this.db.object(`match-${id}`)
+    return matchRef.valueChanges();
   }
+}
+
+function getMatchName(match: Match): string {
+  return `${match.championship.name}-${match.playerA.name} x ${match.playerB.name}`;
 }

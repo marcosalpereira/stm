@@ -1,6 +1,6 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import {CheckboxModule} from 'primeng/checkbox';
+import { CheckboxModule } from 'primeng/checkbox';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -19,6 +19,8 @@ import { MatchEventsComponent } from './components/match/match-events.component'
 import { MatchScoreComponent } from './components/match/match-score.component';
 import { ButtonModule } from 'primeng/button';
 
+import { HttpClientModule } from '@angular/common/http';
+
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -27,7 +29,7 @@ import { SetScoreComponent } from './components/match/set-score.component';
 import { GameScorePipe } from './pipes/match/game-score.pipe';
 import { CommonModule } from '@angular/common';
 import { MatchEditComponent } from './components/match/match-edit.component';
-import {SpinnerModule} from 'primeng/spinner';
+import { SpinnerModule } from 'primeng/spinner';
 
 const routes: Routes = [
   { path: 'matches', component: MatchesComponent },
@@ -52,7 +54,7 @@ const routes: Routes = [
     MatchEditComponent,
   ],
   imports: [
-    CommonModule,CheckboxModule,
+    CommonModule, CheckboxModule,
     FormsModule,
     BrowserModule,
     BrowserAnimationsModule,

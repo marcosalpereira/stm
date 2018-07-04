@@ -1,8 +1,13 @@
 import { Player } from './player';
 import { Championship } from './championship';
 
+export class MatchItem {
+    public matchId: number;
+    public matchName: string;
+}
+
 export class Matches {
-    public matches: string[] = [];
+    public list: MatchItem[] = [];
 }
 
 export class Match {
@@ -18,7 +23,7 @@ export class Match {
     public startDate = new Date();
     public endDate: Date;
     public bestOf = 3;
-    public superTieBreak = true;
+    public superTieBreakLastSet = true;
     public sets: MatchSet[] = [new MatchSet(1)];
     constructor(
         public championship: Championship,
@@ -50,7 +55,7 @@ export class MatchEvent {
     event: EventType;
 }
 
-export type EventType = 'ace' | 'wfh' | 'wbh' | 'efh' | 'ebh';
+export type EventType = 'ace' | 'wfh' | 'wbh' | 'efh' | 'ebh' | 'df';
 
 export type PlayerMatch = 0 | 1;
 

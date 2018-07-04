@@ -1,18 +1,27 @@
-<div class="ui-g">
-  <div class="ui-g-12">{{match.championship.name}}</div>
-</div>
-<div class="ui-g">
-  <div class="ui-g-12">
-    <tsm-match-score [match]="match"></tsm-match-score>
-  </div>
-</div>
-<div class="ui-g">
+<p-panel header="">
+    <p-header>
+        <span>Controlar Partida</span>
+        <button pButton type="button"
+          icon="pi pi-times" (click)="goBack()" style="float: right" class="ui-button-danger"></button>
+    </p-header>
+  <ng-container *ngIf="match">
+    <div class="ui-g">
+      <div class="ui-g-12">{{match.championship.name}}</div>
+    </div>
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <tsm-match-score [match]="match"></tsm-match-score>
+      </div>
+    </div>
+    <div class="ui-g">
 
-  <div class="ui-g-6">
-    <tsm-match-events [match]="match" [player]="match.playerA"></tsm-match-events>
-  </div>
+      <div class="ui-g-6 ui-sm-12">
+        <tsm-match-events [match]="match" [player]="match.playerA"></tsm-match-events>
+      </div>
 
-  <div class="ui-g-6">
-      <tsm-match-events [match]="match" [player]="match.playerB"></tsm-match-events>
-  </div>
-</div>
+      <div class="ui-g-6 ui-sm-12">
+        <tsm-match-events [match]="match" [player]="match.playerB"></tsm-match-events>
+      </div>
+    </div>
+  </ng-container>
+</p-panel>

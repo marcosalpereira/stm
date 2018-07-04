@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { MatchSet, Match, PlayerMatch, MatchEvent, MatchGame } from './model/match';
+import { MatchSet, Match, PlayerMatch, MatchEvent, MatchGame, Matches } from './model/match';
 import { Player } from './model/player';
 import { StorageService } from 'src/app/storage.service';
 import { Subject, Observable } from 'rxjs';
@@ -12,10 +12,6 @@ export class DataService {
 
   constructor(private storageService: StorageService) { }
 
-  listMatches(): Observable<Match[]> {
-    return this.storageService.list();
-  }
-
   matchEvent(match: Match, event: MatchEvent): void {
     let pontuador: PlayerMatch;
     const otherPlayer = getOtherPlayer(event.player);
@@ -27,7 +23,7 @@ export class DataService {
     }
 
     const lastSet = getLastSet(match);
-    const lastGame = getLastGame(lastSet);
+    const lastGame = getLastGame(match, lastSet);
 
     if (lastGame.tiebreak) {
       advanceGameScoreTiebreakPoint(lastGame, pontuador, otherPlayer, getMaxTieBreakPoints(match));
@@ -54,13 +50,23 @@ export class DataService {
     this.matchChange$.next(match);
   }
 
+  listMatches(): Observable<Matches> {
+    return this.storageService.getMatches();
+  }
+
   persist(match: Match): void {
     this.storageService.persist(match);
+  }
+
+  findMatch(id: number): Observable<Match> {
+    return this.storageService.findMatch(id);
   }
 
 }
 
 function advanceMatchScore(match: Match, pontuador: PlayerMatch, otherPlayer: PlayerMatch) {
+
+  //check if suer tie break ends the match
   match.score[pontuador]++;
   if (match.score[pontuador] + match.score[otherPlayer] === match.bestOf) {
     match.finished = true;
@@ -90,7 +96,7 @@ function advanceScore(gameOrSet: MatchSet | MatchGame, pontuador: PlayerMatch, o
 
 
 function getMaxTieBreakPoints(match: Match): number {
-  if (match.superTieBreak && match.sets.length === match.bestOf) {
+  if (match.superTieBreakLastSet && match.sets.length === match.bestOf) {
     return 10;
   }
   return 7;
@@ -117,10 +123,19 @@ function getLastSet(match: Match): MatchSet {
   return match.sets[match.sets.length - 1];
 }
 
-function getLastGame(set: MatchSet): MatchGame {
+function getLastGame(match: Match, set: MatchSet): MatchGame {
   const game = set.games[set.games.length - 1];
-  game.tiebreak = set.score[0] === 6 && set.score[1] === 6;
+  game.tiebreak = isTieBreak(set)
+    || isSuperTieBreak(match);
   return game;
+}
+
+function isTieBreak(set: MatchSet): boolean {
+  return (set.score[0] === 6 && set.score[1] === 6);
+}
+
+function isSuperTieBreak(match: Match): boolean {
+  return (match.sets.length == match.bestOf && match.score[0] === match.score[1]);
 }
 
 function getOtherPlayer(player: PlayerMatch): PlayerMatch {

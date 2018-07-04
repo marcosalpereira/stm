@@ -1,10 +1,16 @@
-<p-panel class="text-center" header="Matches">
-  <button [routerLink]="['/matches', 'new']">New</button>
-  <ul>
-    <li *ngFor="let match of matches | async">
-      {{match.championship.name}} - {{match.playerA.name}} X {{match.playerB.name}}
-      <button [routerLink]="['/matches', match.id, 'control']">Control</button>
-      <button [routerLink]="['/matches', match.id]"           >Watch</button>
-    </li>
-  </ul>
-</p-panel>
+<div class="ui-g">
+  <div class="ui-g-12">
+    <p-panel header="Partidas">
+      <button pButton type="button" [routerLink]="['/matches', 'new']" label="Criar Nova Partida"></button>
+      <ng-container *ngIf="matches">
+        <ul>
+          <li *ngFor="let matchItem of matches.list">
+            <a [routerLink]="['/matches', matchItem.matchId]" title="Assistir">{{matchItem.matchName}}</a>
+            <button [routerLink]="['/matches', matchItem.matchId, 'control']"
+              pButton icon="pi pi-check-circle" label="Controlar"></button>
+          </li>
+        </ul>
+      </ng-container>
+    </p-panel>
+  </div>
+</div>

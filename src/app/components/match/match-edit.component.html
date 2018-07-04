@@ -1,46 +1,52 @@
-<form #form="ngForm" (ngSubmit)="onSubmit()">
-  <div class="ui-g">
-    <div class="ui-g-12">
-      <span class="ui-float-label">
-        <input id="champ" type="text" [(ngModel)]="match.championship.name" pInputText required>
-        <label for="champ">Campeonato</label>
-      </span>
+<p-panel header="Nova Partida">
+  <form #form="ngForm" (ngSubmit)="onSubmit()">
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <!-- <span class="ui-float-label"> -->
+          <label for="champ">Campeonato</label>
+          <input name="champ" id="champ" type="text" [(ngModel)]="match.championship.name"
+              pInputText required>
+        <!-- </span> -->
+      </div>
     </div>
-  </div>
-  <div class="ui-g">
-    <div class="ui-g-6">
-      <span class="ui-float-label">
-        <input id="playerA" type="text" [(ngModel)]="match.playerA.name" pInputText required>
-        <label for="playerA">Jogador 1</label>
-      </span>
+    <div class="ui-g">
+      <div class="ui-g-6">
+        <!-- <span class="ui-float-label"> -->
+          <label for="playerA">Jogador 1</label>
+          <input name="playerA" id="playerA" type="text" [(ngModel)]="match.playerA.name" pInputText required>
+        <!-- </span> -->
+      </div>
+      <div class="ui-g-6">
+        <!-- <span class="ui-float-label"> -->
+          <label for="playerB">Jogador 2</label>
+          <input name="playerB" id="playerB" type="text" [(ngModel)]="match.playerB.name" pInputText required>
+        <!-- </span> -->
+      </div>
     </div>
-    <div class="ui-g-6">
-      <span class="ui-float-label">
-        <input id="playerB" type="text" [(ngModel)]="match.playerB.name" pInputText required>
-        <label for="playerB">Jogador 2</label>
-      </span>
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <!-- <span class="ui-float-label"> -->
+          <label for="bestOf">Melhor de quantos sets</label>
+          <p-spinner id="bestOf" name="bestOf" [(ngModel)]="match.bestOf" required></p-spinner>
+        <!-- </span> -->
+      </div>
     </div>
-  </div>
-  <div class="ui-g">
-    <div class="ui-g-12">
-      <span class="ui-float-label">
-        <p-spinner id="bestOf" name="bestOf" [(ngModel)]="match.bestOf" required></p-spinner>
-        <label for="bestOf">Melhor de quantos sets</label>
-      </span>
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <span class="ui-float-label">
+          <p-checkbox name="superTieBreakLastSet" id="superTieBreakLastSet"
+            [(ngModel)]="match.superTieBreakLastSet" binary="true"
+            label="Super Tie Break no set decisivo?">
+          </p-checkbox>
+        </span>
+      </div>
     </div>
-  </div>
-  <div class="ui-g">
-    <div class="ui-g-12">
-      <span class="ui-float-label">
-        <p-checkbox name="superTieBreak" id="superTieBreak" [(ngModel)]="match.superTieBreak" binary="true"></p-checkbox>
-        <label for="bestOf">Super Tie Break no set decisivo?</label>
-      </span>
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <button [disabled]="form.invalid" pButton type="submit" label="Salvar"></button>
+        <button pButton type="button" label="Voltar" (click)="goBack()"></button>
+      </div>
     </div>
-  </div>
-  <div class="ui-g">
-    <div class="ui-g-12">
-      <button pButton type="submit" label="Salvar"></button>
-    </div>
-  </div>
 
-</form>
+  </form>
+</p-panel>

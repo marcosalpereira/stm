@@ -1,5 +1,5 @@
 .score {
-    border: 1px solid black;
+    border: 1px solid gray;
     width: 30px;
     height: 35px;
     padding: 7px 0px 0px 0px;
@@ -17,7 +17,7 @@
 
 .score.set {
     background-color: white;
-    color: blue;
+    color: black;
 }
 
 .score.tiebreak.finished {
@@ -27,12 +27,12 @@
 }
 
 .score.tiebreak {
-    background-color: yellow;
-    color: blue;
+    background-color: lightgray;
+    color: black;
 }
 
 .score.normal {
-    background-color: yellow;
-    color: blue;
+    background-color: lightgray;
+    color: black;
 }
 

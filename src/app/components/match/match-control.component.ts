@@ -4,6 +4,7 @@ import { Player } from 'src/app/model/player';
 import { Championship } from '../../model/championship';
 import { ActivatedRoute } from '@angular/router';
 import { DataService } from '../../data.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'tsm-match-control',
@@ -16,12 +17,17 @@ export class MatchControlComponent implements OnInit {
 
   constructor(
     private activeRoute: ActivatedRoute,
-    private dataService: DataService) { }
+    private dataService: DataService,
+    private location: Location) { }
 
   ngOnInit() {
     const param = this.activeRoute.snapshot.paramMap;
-    const id = param.get('id');
-    this.dataService.findMatch(id)
+    const id = +param.get('id');
+    this.dataService.findMatch(id).subscribe(match => this.match = match);
+  }
+
+  goBack() {
+    this.location.back();
   }
 
 }
