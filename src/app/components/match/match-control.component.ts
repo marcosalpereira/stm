@@ -5,6 +5,7 @@ import { Championship } from '../../model/championship';
 import { ActivatedRoute } from '@angular/router';
 import { DataService } from '../../data.service';
 import { Location } from '@angular/common';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'tsm-match-control',
@@ -14,6 +15,7 @@ import { Location } from '@angular/common';
 export class MatchControlComponent implements OnInit {
 
   match: Match;
+  matchLocked: boolean;
 
   constructor(
     private activeRoute: ActivatedRoute,
@@ -23,10 +25,22 @@ export class MatchControlComponent implements OnInit {
   ngOnInit() {
     const param = this.activeRoute.snapshot.paramMap;
     const id = +param.get('id');
-    this.dataService.findMatch(id).subscribe(match => this.match = match);
+    this.dataService.findMatch(id).pipe(first()).subscribe(match => {
+        this.match = match;
+
+        this.matchLocked = match.locked;
+        this.setLockStatus(true);
+      }
+    );
+  }
+
+  setLockStatus(locked: boolean) {
+    this.match.locked = locked;
+    this.dataService.persist(this.match);
   }
 
   goBack() {
+    this.setLockStatus(false);
     this.location.back();
   }
 

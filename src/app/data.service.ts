@@ -33,7 +33,7 @@ export class DataService {
 
     if (lastGame.finished) {
       advanceSetScore(lastSet, pontuador, otherPlayer);
-      if (lastSet.finished) {
+      if (lastSet.finished || lastGame.superTiebreak) {
         advanceMatchScore(match, pontuador, otherPlayer);
         if (match.finished) {
           match.endDate = new Date();
@@ -42,8 +42,9 @@ export class DataService {
           match.sets.push(new MatchSet(match.sets.length + 1));
         }
       } else {
-        lastSet.games.push(new MatchGame(lastSet.games.length + 1, getOtherPlayer(lastGame.serving)));
+        lastSet.games.push(new MatchGame(lastSet.games.length + 1));
       }
+      match.serving = getOtherPlayer(match.serving);
     }
 
     this.storageService.persist(match);
@@ -65,8 +66,6 @@ export class DataService {
 }
 
 function advanceMatchScore(match: Match, pontuador: PlayerMatch, otherPlayer: PlayerMatch) {
-
-  //check if suer tie break ends the match
   match.score[pontuador]++;
   if (match.score[pontuador] + match.score[otherPlayer] === match.bestOf) {
     match.finished = true;
@@ -125,8 +124,8 @@ function getLastSet(match: Match): MatchSet {
 
 function getLastGame(match: Match, set: MatchSet): MatchGame {
   const game = set.games[set.games.length - 1];
-  game.tiebreak = isTieBreak(set)
-    || isSuperTieBreak(match);
+  game.superTiebreak = isSuperTieBreak(match);
+  game.tiebreak = game.superTiebreak || isTieBreak(set);
   return game;
 }
 

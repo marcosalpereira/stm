@@ -1,4 +1,7 @@
 <div class="ui-g" *ngFor="let player of [0, 1]">
+    <div class="ui-g-1 saque"
+      [class.serving]="match.serving == player"
+      [class.receiving]="match.serving != player"></div>
     <div class="ui-g-1 score match">{{match.score[player]}}</div>
     <ng-container *ngFor="let set of match.sets; let i=index">
       <div *ngIf="i === match.sets.length - 1 && !lastGame(set).tiebreak" class="ui-g-1 score set">

@@ -42,6 +42,10 @@ export class StorageService {
       this.addMatch(match);
     }
     const matchRef = this.db.object(`match-${match.id}`);
+    match.startDate = match.startDate.toString();
+    if (match.endDate) {
+      match.endDate = match.endDate.toString();
+    }
     matchRef.set(match);
   }
 

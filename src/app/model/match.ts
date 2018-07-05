@@ -19,12 +19,14 @@ export class Match {
     public finished = false;
     public score = [0, 0];
     public winner: PlayerMatch;
+    public locked = false;
 
-    public startDate = new Date();
-    public endDate: Date;
+    public startDate: Date | string = new Date();
+    public endDate: Date | string;
     public bestOf = 3;
     public superTieBreakLastSet = true;
     public sets: MatchSet[] = [new MatchSet(1)];
+    public serving = Match.PLAYER_A;
     constructor(
         public championship: Championship,
         public playerA: Player,
@@ -45,9 +47,10 @@ export class MatchSet {
 export class MatchGame {
     public finished = false;
     public tiebreak = false;
+    public superTiebreak = false;
     public advantage: PlayerMatch;
     public score = [0, 0];
-    constructor(public id: number, public serving = Match.PLAYER_A) { }
+    constructor(public id: number) { }
 }
 
 export class MatchEvent {
