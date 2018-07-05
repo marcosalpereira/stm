@@ -14,7 +14,7 @@
       </div>
       <div class="ui-g">
         <div class="ui-g-4 ui-sm-4">
-          <button type="button" pButton class="ui-button-danger" (click)="onClick('df')" title="Double Fault">DF</button>
+          <button type="button" pButton class="ui-button-danger" (click)="onClick('df')" title="Double Fault" [disabled]="!player.serving">DF</button>
         </div>
         <div class="ui-g-4 ui-sm-4">
           <button type="button" pButton class="ui-button-danger" (click)="onClick('efh')" title="Error forehand">E-FH</button>
