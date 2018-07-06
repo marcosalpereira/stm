@@ -8,7 +8,6 @@ import { first } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class StorageService {
-
   private matchesRef: AngularFireObject<Matches>;
   // private matchRef: AngularFireObject<Match>;
   // private match: Observable<Match>;
@@ -34,7 +33,7 @@ export class StorageService {
     });
   }
 
-  persist(match: Match): void {
+  persistMatch(match: Match): void {
     let newId: number;
     if (!match.id) {
       match.id = new Date().getTime();

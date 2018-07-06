@@ -30,6 +30,10 @@ import { GameScorePipe } from './pipes/match/game-score.pipe';
 import { CommonModule } from '@angular/common';
 import { MatchEditComponent } from './components/match/match-edit.component';
 import { SpinnerModule } from 'primeng/spinner';
+import { ListEventsComponent } from './components/match/list-events.component';
+import { StatsComponent } from './components/match/stats.component';
+import { StatComponent } from './components/match/stat.component';
+import { EventPipe } from './pipes/match/event.pipe';
 
 const routes: Routes = [
   { path: 'matches', component: MatchesComponent },
@@ -52,6 +56,10 @@ const routes: Routes = [
     SetScoreComponent,
     GameScorePipe,
     MatchEditComponent,
+    ListEventsComponent,
+    StatsComponent,
+    StatComponent,
+    EventPipe,
   ],
   imports: [
     CommonModule, CheckboxModule,

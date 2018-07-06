@@ -27,14 +27,11 @@ export class Match {
     public superTieBreakLastSet = true;
     public sets: MatchSet[] = [new MatchSet(1)];
     public serving = Match.PLAYER_A;
+    public events: MatchEvent[] = []
     constructor(
         public championship: Championship,
         public playerA: Player,
         public playerB: Player) { }
-}
-
-export class MatchStats {
-    public events: MatchEvent[] = [];
 }
 
 export class MatchSet {
@@ -56,6 +53,10 @@ export class MatchGame {
 export class MatchEvent {
     player: PlayerMatch;
     event: EventType;
+}
+
+export class Stat {
+    constructor(public name: string, public value:number) {}
 }
 
 export type EventType = 'ace' | 'wfh' | 'wbh' | 'efh' | 'ebh' | 'df';

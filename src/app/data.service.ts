@@ -47,7 +47,7 @@ export class DataService {
       match.serving = getOtherPlayer(match.serving);
     }
 
-    this.storageService.persist(match);
+    this.storageService.persistMatch(match);
     this.matchChange$.next(match);
   }
 
@@ -56,7 +56,7 @@ export class DataService {
   }
 
   persist(match: Match): void {
-    this.storageService.persist(match);
+    this.storageService.persistMatch(match);
     this.matchChange$.next(match);
   }
 

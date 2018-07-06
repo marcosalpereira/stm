@@ -1,0 +1,10 @@
+<p-panel [header]="player.name">
+  <div class="ui-g">
+    <div class="ui-g-1" *ngFor="let stat of stats">
+      <div class="ui-inputgroup">
+        <input type="text" readonly pInputText [value]="stat.name">
+        <input type="text" readonly pInputText [value]="stat.value">
+      </div>
+    </div>
+  </div>
+</p-panel>

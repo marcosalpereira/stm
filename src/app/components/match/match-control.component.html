@@ -2,7 +2,7 @@
   <p-panel>
     <p-header>
       <span>Controlar Partida - {{match.championship.name}}</span>
-      <button pButton type="button" icon="pi pi-times" (click)="goBack()" style="float: right" class="ui-button-danger"></button>
+      <button pButton type="button" icon="pi pi-times" (click)="goBack()" style="float: right" class="ui-button-primary"></button>
     </p-header>
     <p-footer>
       <div>
@@ -20,7 +20,8 @@
     </div>
     <div class="ui-g">
       <div class="ui-g-12">
-        <button [disabled]="undo.length == 0" pButton type="button" class="ui-button-warning" label="Eventos: {{undo.length}} - desfazer o Ultimo"
+        <button [disabled]="undo.length == 0" pButton type="button" class="ui-button-warning"
+          label="Eventos: {{undo.length}} - desfazer o Ultimo"
           (click)="undoLastEvent()"></button>
       </div>
     </div>

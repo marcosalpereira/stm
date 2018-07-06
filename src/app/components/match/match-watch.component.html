@@ -1,3 +1,28 @@
-<p>
-  match-view works!
-</p>
+<ng-container *ngIf="match">
+  <p-panel>
+    <p-header>
+      <span>Assistir Partida - {{match.championship.name}}</span>
+      <button pButton type="button" icon="pi pi-times" (click)="goBack()" style="float: right" class="ui-button-primary"></button>
+    </p-header>
+    <p-footer>
+      <div>
+        {{match.startDate | date : 'dd/MM/yy HH:mm'}} - {{match.endDate | date : 'dd/MM/yy HH:mm'}}
+      </div>
+      <div *ngIf="match.finished">
+        Vencedor: {{match.winner == 0 ? match.playerA.name : match.playerB.name}}
+      </div>
+    </p-footer>
+
+    <div class="ui-g">
+      <div class="ui-g-4 ui-sm-12">
+        <tsm-match-score [match]="match"></tsm-match-score>
+      </div>
+      <div class="ui-g-4 ui-sm-12">
+        <tsm-stats [match]="match"></tsm-stats>
+      </div>
+      <div class="ui-g-4 ui-sm-12">
+        <tsm-list-events [match]="match"></tsm-list-events>
+      </div>
+    </div>
+  </p-panel>
+</ng-container>

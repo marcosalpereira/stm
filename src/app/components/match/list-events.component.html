@@ -1,0 +1,9 @@
+<div class="ui-g">
+  <div class="ui-g-12">
+    <p-panel header="Eventos">
+      <p *ngFor="let e of match.events">
+        {{e | event : match}}
+      </p>
+    </p-panel>
+  </div>
+</div>

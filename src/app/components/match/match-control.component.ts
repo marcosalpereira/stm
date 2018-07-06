@@ -1,7 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Match } from 'src/app/model/match';
-import { Player } from 'src/app/model/player';
-import { Championship } from '../../model/championship';
 import { ActivatedRoute } from '@angular/router';
 import { DataService } from '../../data.service';
 import { Location } from '@angular/common';
