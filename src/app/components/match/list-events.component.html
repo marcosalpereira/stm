@@ -1,6 +1,6 @@
 <div class="ui-g">
   <div class="ui-g-12">
-    <p-panel header="Eventos">
+    <p-panel header="Eventos" toggleable="true">
       <p *ngFor="let e of (match.events | lastEvents)">
         {{e.player | player : match}} {{e.event | event}}
       </p>

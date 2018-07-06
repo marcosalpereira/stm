@@ -70,7 +70,8 @@ const routes: Routes = [
     BrowserAnimationsModule,
     RouterModule.forRoot(routes),
     PanelModule,
-    ButtonModule, SpinnerModule,
+    ButtonModule,
+    SpinnerModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule

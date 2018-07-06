@@ -1,4 +1,5 @@
-<p-panel [header]="player.name">
+<p-panel toggleable="true">
+  <p-header>Estatísticas {{player.name}}</p-header>
   <div class="ui-g" *ngFor="let stat of stats">
     <div class="ui-g-12">
       <div>{{stat.value}} - {{stat.event | event}}</div>
