@@ -8,8 +8,6 @@ import { Subject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class DataService {
-  matchChange$ = new Subject<Match>();
-
   constructor(private storageService: StorageService) { }
 
   matchEvent(match: Match, event: MatchEvent): void {
@@ -46,9 +44,9 @@ export class DataService {
       }
       match.serving = getOtherPlayer(match.serving);
     }
-
+    if (!match.events) {match.events = [];}
+    match.events.push(event);
     this.storageService.persistMatch(match);
-    this.matchChange$.next(match);
   }
 
   listMatches(): Observable<Matches> {
@@ -57,7 +55,6 @@ export class DataService {
 
   persist(match: Match): void {
     this.storageService.persistMatch(match);
-    this.matchChange$.next(match);
   }
 
   findMatch(id: number): Observable<Match> {

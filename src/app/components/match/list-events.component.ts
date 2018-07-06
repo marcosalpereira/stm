@@ -8,23 +8,7 @@ import { DataService } from 'src/app/data.service';
   templateUrl: './list-events.component.html',
   styleUrls: ['./list-events.component.css']
 })
-export class ListEventsComponent implements OnInit {
-
-  private matchChangeSub: Subscription;
+export class ListEventsComponent {
   @Input() match: Match;
-  constructor(private dataService: DataService) { }
-
-  ngOnInit() {
-    this.matchChangeSub = this.dataService.matchChange$.subscribe(
-      match => {
-        this.match = match;
-        console.log('e', match.events);
-      }
-    );
-  }
-
-  ngOnDestroy() {
-    this.matchChangeSub.unsubscribe();
-  }
 }
 

@@ -34,6 +34,8 @@ import { ListEventsComponent } from './components/match/list-events.component';
 import { StatsComponent } from './components/match/stats.component';
 import { StatComponent } from './components/match/stat.component';
 import { EventPipe } from './pipes/match/event.pipe';
+import { PlayerPipe } from './pipes/match/player.pipe';
+import { LastEventsPipe } from './pipes/last-events.pipe';
 
 const routes: Routes = [
   { path: 'matches', component: MatchesComponent },
@@ -59,7 +61,7 @@ const routes: Routes = [
     ListEventsComponent,
     StatsComponent,
     StatComponent,
-    EventPipe,
+    EventPipe, PlayerPipe, LastEventsPipe
   ],
   imports: [
     CommonModule, CheckboxModule,

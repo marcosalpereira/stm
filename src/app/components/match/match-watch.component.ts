@@ -25,8 +25,7 @@ export class MatchWatchComponent implements OnInit, OnDestroy {
     const id = +param.get('id');
     this.findSub = this.dataService.findMatch(id).subscribe(match => {
       this.match = match;
-    }
-    );
+    });
   }
 
   ngOnDestroy() {

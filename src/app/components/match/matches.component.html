@@ -5,13 +5,13 @@
         <button pButton type="button" [routerLink]="['/matches', 'new']" label="Criar Nova Partida"></button>
       </p-header>
       <ng-container *ngIf="matches">
-
-          <div class="ui-inputgroup" *ngFor="let matchItem of matches.list">
+          <div class="ui-g" *ngFor="let matchItem of matches.list">
+          <div class="ui-g-12 ui-sm-6">
             <input type="text" readonly pInputText [value]="matchItem.matchName">
             <button [routerLink]="['/matches', matchItem.matchId]" pButton icon="pi pi-check" label="Assistir" class="ui-button-success"></button>
               <button [routerLink]="['/matches', matchItem.matchId, 'control']" pButton icon="pi pi-check-circle" label="Controlar" class="ui-button-primary"></button>
           </div>
-
+        </div>
       </ng-container>
     </p-panel>
   </div>

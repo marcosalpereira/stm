@@ -1,0 +1,13 @@
+.stat {
+    border: 1px solid gray;
+}
+
+.stat.event {
+    background-color: transparent;
+}
+
+.stat.value {
+    width: 30px;
+    background-color: yellowgreen;
+}
+

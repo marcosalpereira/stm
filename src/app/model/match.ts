@@ -56,7 +56,7 @@ export class MatchEvent {
 }
 
 export class Stat {
-    constructor(public name: string, public value:number) {}
+    constructor(public event: EventType, public value:number) {}
 }
 
 export type EventType = 'ace' | 'wfh' | 'wbh' | 'efh' | 'ebh' | 'df';

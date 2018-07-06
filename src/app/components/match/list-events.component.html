@@ -1,8 +1,8 @@
 <div class="ui-g">
   <div class="ui-g-12">
     <p-panel header="Eventos">
-      <p *ngFor="let e of match.events">
-        {{e | event : match}}
+      <p *ngFor="let e of (match.events | lastEvents)">
+        {{e.player | player : match}} {{e.event | event}}
       </p>
     </p-panel>
   </div>
