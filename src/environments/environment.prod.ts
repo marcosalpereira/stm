@@ -1,11 +1,11 @@
 export const environment = {
   production: true,
   firebase: {
-    apiKey: "AIzaSyAWKHU_vo0v0BuWM5ei8HLvT3K2hHNrWf8",
-    authDomain: "tenis-score-match.firebaseapp.com",
-    databaseURL: "https://tenis-score-match.firebaseio.com",
-    projectId: "tenis-score-match",
-    storageBucket: "tenis-score-match.appspot.com",
-    messagingSenderId: "368564429662"    
+    apiKey: "AIzaSyBVMSNDfFII6hJiqFoGOTtYmyswj60RMcI",
+    authDomain: "tennis-score-match.firebaseapp.com",
+    databaseURL: "https://tennis-score-match.firebaseio.com",
+    projectId: "tennis-score-match",
+    storageBucket: "tennis-score-match.appspot.com",
+    messagingSenderId: "283766463636"
   }
 };
