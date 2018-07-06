@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Match, EventType } from 'src/app/model/match';
+import { Match, EventType, MatchEvent } from 'src/app/model/match';
 import { Player } from 'src/app/model/player';
 import { DataService } from '../../data.service';
 
@@ -12,17 +12,19 @@ export class MatchEventsComponent implements OnInit {
 
   @Input() match: Match;
   @Input() player: Player;
+  @Output() event = new EventEmitter<MatchEvent>();
 
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
+
   }
 
   onClick(evento: EventType) {
     const matchEvent = {
       player: this.player.playerMatch, event: evento
     };
-    this.dataService.matchEvent(this.match, matchEvent);
+    this.event.emit(matchEvent);
   }
 
 }

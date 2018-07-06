@@ -26,7 +26,6 @@ export class StorageService {
 
   private addMatch(match: Match) {
     this.getMatches().pipe(first()).subscribe(matches => {
-      console.log('matches', matches);
       if (!matches) {
         matches = new Matches();
       }

@@ -16,6 +16,7 @@ export class MatchControlComponent implements OnInit {
 
   match: Match;
   matchLocked: boolean;
+  undo: string[] = [];
 
   constructor(
     private activeRoute: ActivatedRoute,
@@ -42,6 +43,16 @@ export class MatchControlComponent implements OnInit {
   goBack() {
     this.setLockStatus(false);
     this.location.back();
+  }
+
+  undoLastEvent() {
+    this.match = JSON.parse(this.undo.pop());
+    this.dataService.persist(this.match);
+  }
+
+  onEvent(matchEvent) {
+    this.undo.push(JSON.stringify(this.match));
+    this.dataService.matchEvent(this.match, matchEvent);
   }
 
 }

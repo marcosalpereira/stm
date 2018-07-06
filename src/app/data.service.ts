@@ -57,6 +57,7 @@ export class DataService {
 
   persist(match: Match): void {
     this.storageService.persist(match);
+    this.matchChange$.next(match);
   }
 
   findMatch(id: number): Observable<Match> {
