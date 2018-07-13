@@ -26,14 +26,14 @@
 }
 
 .score.match {
-    background-color: black;
+    background-color: #54008b;
     color: white;
     margin-right: 5px;
 }
 
 .score.set {
     background-color: white;
-    color: black;
+    color: #54008b;
 }
 
 .score.tiebreak.finished {
@@ -43,12 +43,12 @@
 }
 
 .score.tiebreak {
-    background-color: lightgray;
-    color: black;
+    background-color: #00703c;
+    color: white;
 }
 
 .score.normal {
-    background-color: lightgray;
-    color: black;
+    background-color: #00703c;
+    color: white;
 }
 

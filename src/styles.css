@@ -2,3 +2,11 @@
 .buttons > button {
     margin-right: 3px;
 }
+
+.ui-panel-titlebar .ui {
+    background-color: #54008b !important;
+}
+
+.ui-panel-title {
+    color: white !important;
+}
