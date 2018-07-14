@@ -19,6 +19,9 @@ import { MatchEventsComponent } from './components/match/match-events.component'
 import { MatchScoreComponent } from './components/match/match-score.component';
 import { ButtonModule } from 'primeng/button';
 
+import { ToolbarModule } from 'primeng/toolbar';
+
+
 import { HttpClientModule } from '@angular/common/http';
 
 import { AngularFireModule } from 'angularfire2';
@@ -36,6 +39,12 @@ import { StatComponent } from './components/match/stat.component';
 import { EventPipe } from './pipes/match/event.pipe';
 import { PlayerPipe } from './pipes/match/player.pipe';
 import { LastEventsPipe } from './pipes/last-events.pipe';
+import { PlayerSelectComponent } from './components/player-select/player-select.component';
+import { DialogModule } from 'primeng/dialog';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
+
+import {DropdownModule} from 'primeng/dropdown';
+import { FilterChampPipe } from './pipes/filter-champ.pipe';
 
 const routes: Routes = [
   { path: 'matches', component: MatchesComponent },
@@ -61,7 +70,7 @@ const routes: Routes = [
     ListEventsComponent,
     StatsComponent,
     StatComponent,
-    EventPipe, PlayerPipe, LastEventsPipe
+    EventPipe, PlayerPipe, LastEventsPipe, PlayerSelectComponent, ToolbarComponent, FilterChampPipe
   ],
   imports: [
     CommonModule, CheckboxModule,
@@ -70,8 +79,9 @@ const routes: Routes = [
     BrowserAnimationsModule,
     RouterModule.forRoot(routes),
     PanelModule,
-    ButtonModule,
-    SpinnerModule,
+    ButtonModule, DropdownModule,
+    DialogModule,
+    SpinnerModule, ToolbarModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule

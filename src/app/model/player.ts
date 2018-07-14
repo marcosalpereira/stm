@@ -1,7 +1,6 @@
-import { PlayerMatch } from "./match";
+import { PlayerNumber } from "./match";
 
 export class Player {
     constructor (
-        public name: string,
-        public playerMatch: PlayerMatch) {}
+        public name: string) {}
 }

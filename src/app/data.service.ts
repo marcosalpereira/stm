@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { MatchSet, Match, PlayerMatch, MatchEvent, MatchGame, Matches } from './model/match';
+import { MatchSet, Match, PlayerNumber, MatchEvent, MatchGame, Matches } from './model/match';
 import { Player } from './model/player';
 import { StorageService } from 'src/app/storage.service';
 import { Subject, Observable } from 'rxjs';
@@ -11,7 +11,7 @@ export class DataService {
   constructor(private storageService: StorageService) { }
 
   matchEvent(match: Match, event: MatchEvent): void {
-    let pontuador: PlayerMatch;
+    let pontuador: PlayerNumber;
     const otherPlayer = getOtherPlayer(event.player);
 
     if (event.event === 'ace' || event.event === 'wbh' || event.event === 'wfh') {
@@ -61,9 +61,29 @@ export class DataService {
     return this.storageService.findMatch(id);
   }
 
+  listPlayers(): Observable<Player[]> {
+    return this.storageService.getPlayers();
+  }
+
+  persistPlayers(players: Player[]) {
+    this.storageService.persistPlayers(players);
+  }
+
+  getUser(): Player {
+    const p = localStorage.getItem('tsm.player');
+    if (p) {
+      return JSON.parse(p);
+    }
+    return new Player('');
+  }
+
+  setUser(player: Player) {
+    localStorage.setItem('tsm.player', JSON.stringify(player));
+  }
+
 }
 
-function advanceMatchScore(match: Match, pontuador: PlayerMatch, otherPlayer: PlayerMatch) {
+function advanceMatchScore(match: Match, pontuador: PlayerNumber, otherPlayer: PlayerNumber) {
   match.score[pontuador]++;
   if (match.score[pontuador] + match.score[otherPlayer] === match.bestOf) {
     match.finished = true;
@@ -75,15 +95,15 @@ function advanceMatchScore(match: Match, pontuador: PlayerMatch, otherPlayer: Pl
   }
 }
 
-function advanceSetScore(set: MatchSet, pontuador: PlayerMatch, otherPlayer: PlayerMatch) {
+function advanceSetScore(set: MatchSet, pontuador: PlayerNumber, otherPlayer: PlayerNumber) {
   advanceScore(set, pontuador, otherPlayer, 6);
 }
 
-function advanceGameScoreTiebreakPoint(game: MatchGame, pontuador: PlayerMatch, otherPlayer: PlayerMatch, maxTieBreakPoints: number): void {
+function advanceGameScoreTiebreakPoint(game: MatchGame, pontuador: PlayerNumber, otherPlayer: PlayerNumber, maxTieBreakPoints: number): void {
   advanceScore(game, pontuador, otherPlayer, maxTieBreakPoints);
 }
 
-function advanceScore(gameOrSet: MatchSet | MatchGame, pontuador: PlayerMatch, otherPlayer: PlayerMatch, maxPoints: number) {
+function advanceScore(gameOrSet: MatchSet | MatchGame, pontuador: PlayerNumber, otherPlayer: PlayerNumber, maxPoints: number) {
   gameOrSet.score[pontuador]++;
   if (gameOrSet.score[pontuador] >= maxPoints
     && (gameOrSet.score[pontuador] - gameOrSet.score[otherPlayer]) >= 2) {
@@ -99,7 +119,7 @@ function getMaxTieBreakPoints(match: Match): number {
   return 7;
 }
 
-function advanceGameScoreNormalPoint(game: MatchGame, pontuador: PlayerMatch, otherPlayer: PlayerMatch): void {
+function advanceGameScoreNormalPoint(game: MatchGame, pontuador: PlayerNumber, otherPlayer: PlayerNumber): void {
   if (game.score[pontuador] !== 3) {
     game.score[pontuador]++;
 
@@ -135,7 +155,7 @@ function isSuperTieBreak(match: Match): boolean {
   return (match.sets.length == match.bestOf && match.score[0] === match.score[1]);
 }
 
-function getOtherPlayer(player: PlayerMatch): PlayerMatch {
+function getOtherPlayer(player: PlayerNumber): PlayerNumber {
   return player === 1 ? 0 : 1;
 }
 

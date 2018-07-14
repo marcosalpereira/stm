@@ -1,10 +1,11 @@
 <ng-container *ngIf="match">
   <p-panel>
     <p-header>
-      <span>Controlar Partida - {{match.championship.name}}</span>
       <button pButton type="button" icon="pi pi-times" (click)="goBack()" style="float: right" class="ui-button-primary"></button>
+      <span>Controlar Partida - {{match.championship.name}}</span>
+      <div *ngIf="match?.controller?.name !== controller.name">Controlada por - {{match?.controller?.name}}</div>
       <div>
-        {{match.startDate | date : 'dd/MM/yy HH:mm'}} - {{match.endDate | date : 'dd/MM/yy HH:mm'}}
+        {{match.startDate | date : 'HH:mm'}} - {{match.endDate | date : 'HH:mm'}}
       </div>
       <div *ngIf="match.finished">
         Vencedor: {{match.winner == 0 ? match.playerA.name : match.playerB.name}}
@@ -12,25 +13,24 @@
     </p-header>
 
     <div class="ui-g">
-      <div class="ui-g-12">
+      <div class="ui-g-12 no-padd">
         <tsm-match-score [match]="match"></tsm-match-score>
       </div>
     </div>
-    <div class="ui-g">
-      <div class="ui-g-12">
-        <button [disabled]="undo.length == 0" pButton type="button" class="ui-button-warning"
-          label="Eventos: {{undo.length}} - desfazer o Ultimo"
-          (click)="undoLastEvent()"></button>
-      </div>
-    </div>
-    <div class="ui-g" *ngIf="!matchLocked && !match.finished">
-
-      <div class="ui-g-6 ui-sm-12">
-        <tsm-match-events (event)="onEvent($event)" [match]="match" [player]="match.playerA"></tsm-match-events>
+    <div class="ui-g" *ngIf="match.controller && match.controller.name === controller.name && !match.finished">
+      <div class="ui-g">
+        <div class="ui-g-12 no-padd">
+          <button [disabled]="undo.length == 0" pButton type="button" class="ui-button-warning" label="Eventos: {{undo.length}} - desfazer o Ultimo"
+            (click)="undoLastEvent()"></button>
+        </div>
       </div>
 
-      <div class="ui-g-6 ui-sm-12">
-        <tsm-match-events (event)="onEvent($event)" [match]="match" [player]="match.playerB"></tsm-match-events>
+      <div class="ui-g-6 ui-sm-12 no-padd">
+        <tsm-match-events (event)="onEvent($event)" [match]="match" [playerNumber]="0"></tsm-match-events>
+      </div>
+
+      <div class="ui-g-6 ui-sm-12 no-padd">
+        <tsm-match-events (event)="onEvent($event)" [match]="match" [playerNumber]="1"></tsm-match-events>
       </div>
     </div>
   </p-panel>

@@ -5,6 +5,7 @@ import { DataService } from '../../data.service';
 import { Location } from '@angular/common';
 import { first } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
+import { Player } from 'src/app/model/player';
 
 @Component({
   selector: 'tsm-match-control',
@@ -14,8 +15,8 @@ import { Subscription } from 'rxjs';
 export class MatchControlComponent implements OnInit, OnDestroy {
   findSub: Subscription;
   match: Match;
-  matchLocked: boolean;
   undo: string[] = [];
+  controller: Player;
 
   constructor(
     private activeRoute: ActivatedRoute,
@@ -23,13 +24,15 @@ export class MatchControlComponent implements OnInit, OnDestroy {
     private location: Location) { }
 
   ngOnInit() {
+    this.controller = this.dataService.getUser();
+
     const param = this.activeRoute.snapshot.paramMap;
     const id = +param.get('id');
     this.findSub = this.dataService.findMatch(id).pipe(first()).subscribe(match => {
         this.match = match;
-
-        this.matchLocked = match.locked;
-        this.setLockStatus(true);
+        if (!match.controller) {
+          this.setController(this.controller);
+        }
       }
     );
   }
@@ -38,13 +41,16 @@ export class MatchControlComponent implements OnInit, OnDestroy {
     this.findSub.unsubscribe();
   }
 
-  setLockStatus(locked: boolean) {
-    this.match.locked = locked;
+  setController(p: Player) {
+    console.log('p', p);
+    this.match.controller = p ? p : null;;
     this.dataService.persist(this.match);
   }
 
   goBack() {
-    this.setLockStatus(false);
+    if (this.controller.name === this.match.controller.name) {
+      this.setController(undefined);
+    }
     this.location.back();
   }
 

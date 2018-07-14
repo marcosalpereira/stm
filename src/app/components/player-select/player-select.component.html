@@ -1,0 +1,14 @@
+<label *ngIf="label" for="player">{{label}}</label>
+<div>
+  <p-dropdown autoWidth="false" [style]="{'width':'80%'}" id="player" [options]="players" [(ngModel)]="player" placeholder="Usuário"
+    (onChange)="onChange($event)" optionLabel="name"></p-dropdown>
+  <button type="button" title="Adicionar novo jogador" pButton icon="pi pi-user-plus" (click)="showNewPlayer=true" class="ui-inputgroup-addon">
+  </button>
+</div>
+<p-dialog header="Novo Jogador" [(visible)]="showNewPlayer">
+  <input type="text" placeholder="Novo Jogador" name="jogador" [(ngModel)]="playerName">
+  <p-footer>
+    <button type="button" pButton icon="pi pi-check" (click)="confirmar()" label="Confirmar"></button>
+    <button type="button" pButton icon="pi pi-close" (click)="showNewPlayer=false" label="Cancelar" class="ui-button-secondary"></button>
+  </p-footer>
+</p-dialog>

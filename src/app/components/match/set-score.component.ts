@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { MatchSet, PlayerMatch, MatchGame } from 'src/app/model/match';
+import { MatchSet, PlayerNumber, MatchGame } from 'src/app/model/match';
 
 @Component({
   selector: 'tsm-set-score',
@@ -12,7 +12,7 @@ export class SetScoreComponent implements OnInit, OnChanges {
   set: MatchSet;
 
   @Input()
-  player: PlayerMatch;
+  player: PlayerNumber;
 
   lastGame: MatchGame;
 

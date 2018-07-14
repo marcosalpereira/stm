@@ -1,25 +1,25 @@
 <div class="ui-g">
   <div class="ui-g-12">
-    <p-panel class="text-center" [header]="player.name">
-      <div class="ui-g">
-        <div class="ui-g-4 ui-sm-4">
-          <button type="button" pButton class="ui-button-success" (click)="onClick('ace')           " [disabled]="match.serving != player.playerMatch">Ace</button>
+    <p-panel class="player-panel" [header]="playerNumber == 0 ? match.playerA.name : match.playerB.name">
+      <div class="ui-g no-padd">
+        <div class="ui-g-4 ui-sm-4 no-padd">
+          <button type="button" pButton class="ui-button-success" (click)="onClick('ace')           " [disabled]="match.serving != playerNumber">Ace</button>
         </div>
-        <div class="ui-g-4 ui-sm-4">
+        <div class="ui-g-4 ui-sm-4 no-padd">
           <button type="button" pButton class="ui-button-success" (click)="onClick('wbh')" title="Winner backhand">W-BH</button>
         </div>
-        <div class="ui-g-4 ui-sm-4">
+        <div class="ui-g-4 ui-sm-4 no-padd">
           <button type="button" pButton class="ui-button-success" (click)="onClick('wfh')" title="Winner forehand">W-FH</button>
         </div>
       </div>
-      <div class="ui-g">
-        <div class="ui-g-4 ui-sm-4">
-          <button type="button" pButton class="ui-button-danger" (click)="onClick('df')" title="Double Fault" [disabled]="match.serving != player.playerMatch">DF</button>
+      <div class="ui-g no-padd">
+        <div class="ui-g-4 ui-sm-4 no-padd">
+          <button type="button" pButton class="ui-button-danger" (click)="onClick('df')" title="Double Fault" [disabled]="match.serving != playerNumber">DF</button>
         </div>
-        <div class="ui-g-4 ui-sm-4">
+        <div class="ui-g-4 ui-sm-4 no-padd">
           <button type="button" pButton class="ui-button-danger" (click)="onClick('efh')" title="Error forehand">E-FH</button>
         </div>
-        <div class="ui-g-4 ui-sm-4">
+        <div class="ui-g-4 ui-sm-4 no-padd">
           <button type="button" pButton class="ui-button-danger" (click)="onClick('ebh')" title="Error backhand">E-BH</button>
         </div>
       </div>

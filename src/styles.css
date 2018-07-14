@@ -3,10 +3,10 @@
     margin-right: 3px;
 }
 
-.ui-panel-titlebar .ui {
-    background-color: #54008b !important;
+.player-panel .ui-panel-titlebar {
+    padding: 0.1em 0.3em !important;
 }
 
-.ui-panel-title {
-    color: white !important;
+.no-padd {
+    padding: 0px !important;
 }

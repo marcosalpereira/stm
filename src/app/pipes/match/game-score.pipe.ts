@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { MatchGame, PlayerMatch, Match } from '../../model/match';
+import { MatchGame, PlayerNumber, Match } from '../../model/match';
 
 @Pipe({
   name: 'gameScore',
@@ -7,7 +7,7 @@ import { MatchGame, PlayerMatch, Match } from '../../model/match';
 })
 export class GameScorePipe implements PipeTransform {
 
-  transform(game: MatchGame, player: PlayerMatch): string {
+  transform(game: MatchGame, player: PlayerNumber): string {
     if (game.advantage === player) {
       return 'AD';
     }

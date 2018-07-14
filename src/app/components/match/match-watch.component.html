@@ -1,14 +1,15 @@
 <ng-container *ngIf="match">
   <p-panel>
     <p-header>
-      <span>Assistir Partida - {{match.championship.name}}</span>
       <button pButton type="button" icon="pi pi-times" (click)="goBack()" style="float: right" class="ui-button-primary"></button>
-        <div>
-          {{match.startDate | date : 'dd/MM/yy HH:mm'}} - {{match.endDate | date : 'dd/MM/yy HH:mm'}}
-        </div>
-        <div *ngIf="match.finished">
-          Vencedor: {{match.winner == 0 ? match.playerA.name : match.playerB.name}}
-        </div>
+      <span>Assistir Partida - {{match.championship.name}}</span>
+      <div>Controlada por - {{match?.controller?.name}}</div>
+      <div>
+        {{match.startDate | date : 'dd/MM/yy HH:mm'}} - {{match.endDate | date : 'dd/MM/yy HH:mm'}}
+      </div>
+      <div *ngIf="match.finished">
+        Vencedor: {{match.winner == 0 ? match.playerA.name : match.playerB.name}}
+      </div>
     </p-header>
 
     <div class="ui-g">

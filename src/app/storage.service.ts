@@ -3,12 +3,14 @@ import { AngularFireDatabase, AngularFireObject, AngularFireList } from 'angular
 import { Match, Matches } from 'src/app/model/match';
 import { Observable } from 'rxjs';
 import { first } from 'rxjs/operators';
+import { Player } from 'src/app/model/player';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StorageService {
   private matchesRef: AngularFireObject<Matches>;
+  private playersRef: AngularFireObject<Player[]>;
   // private matchRef: AngularFireObject<Match>;
   // private match: Observable<Match>;
   // private matchesRef: AngularFireList<Match>;
@@ -16,6 +18,7 @@ export class StorageService {
   constructor(private db: AngularFireDatabase) {
     // this.matchesRef = db.list('matches');
     this.matchesRef = db.object('matches');
+    this.playersRef =  db.object(`players`);
     // this.match = this.matchRef.valueChanges();
   }
 
@@ -28,9 +31,18 @@ export class StorageService {
       if (!matches) {
         matches = new Matches();
       }
-      matches.list.push({'matchId': match.id, 'matchName': getMatchName(match)});
+      matches.list.push({'matchId': match.id, 'champName': match.championship.name, 'matchName': getMatchName(match)});
       this.matchesRef.set(matches);
     });
+  }
+
+  getPlayers(): Observable<Player[]> {
+    return this.playersRef.valueChanges();
+  }
+
+  persistPlayers(players: Player[]) {
+    const playersRef = this.db.object(`players`);
+    playersRef.set(players);
   }
 
   persistMatch(match: Match): void {
@@ -54,5 +66,5 @@ export class StorageService {
 }
 
 function getMatchName(match: Match): string {
-  return `${match.championship.name}-${match.playerA.name} x ${match.playerB.name}`;
+  return `${match.playerA.name} x ${match.playerB.name}`;
 }

@@ -3,6 +3,7 @@ import { Championship } from './championship';
 
 export class MatchItem {
     public matchId: number;
+    public champName: string;
     public matchName: string;
 }
 
@@ -11,15 +12,15 @@ export class Matches {
 }
 
 export class Match {
-    public static readonly PLAYER_A: PlayerMatch = 0;
-    public static readonly PLAYER_B: PlayerMatch = 1;
+    public static readonly PLAYER_A: PlayerNumber = 0;
+    public static readonly PLAYER_B: PlayerNumber = 1;
     public static readonly GAME_SCORES = [0, 15, 30, 40];
 
     public id: number;
     public finished = false;
     public score = [0, 0];
-    public winner: PlayerMatch;
-    public locked = false;
+    public winner: PlayerNumber;
+    public controller: Player;
 
     public startDate: Date | string = new Date();
     public endDate: Date | string;
@@ -45,13 +46,13 @@ export class MatchGame {
     public finished = false;
     public tiebreak = false;
     public superTiebreak = false;
-    public advantage: PlayerMatch;
+    public advantage: PlayerNumber;
     public score = [0, 0];
     constructor(public id: number) { }
 }
 
 export class MatchEvent {
-    player: PlayerMatch;
+    player: PlayerNumber;
     event: EventType;
 }
 
@@ -61,7 +62,9 @@ export class Stat {
 
 export type EventType = 'ace' | 'wfh' | 'wbh' | 'efh' | 'ebh' | 'df';
 
-export type PlayerMatch = 0 | 1;
+export type PlayerNumber = 0 | 1;
 
-
+export class PlayerMatch {
+    constructor(public player: Player, public playerNumber: PlayerNumber){}
+}
 
