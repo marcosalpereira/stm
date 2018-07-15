@@ -2,15 +2,16 @@
 
 <!-- <div class="ui-g"> -->
 <!-- <div class="ui-g-12"> -->
-  <ng-container *ngIf="matches">
-<p-panel *ngFor="let champName of champsName">
-  <p-header>{{champName}}</p-header>
+<ng-container *ngIf="matches">
+  <p-panel *ngFor="let champName of champsName">
+    <p-header>{{champName}}</p-header>
     <div class="ui-g" *ngFor="let matchItem of matches.list | filterChamp : champName">
       <div class="ui-g-12 ui-sm-6 ui-inputgroup">
         <input type="text" readonly pInputText [value]="matchItem.matchName">
         <div class="buttons">
           <button [routerLink]="['/matches', matchItem.matchId]" pButton icon="fa fa-eye fa-lg" title="Assistir" class="ui-button-success"></button>
-          <button [routerLink]="['/matches', matchItem.matchId, 'control']" pButton icon="pi pi-check-circle fa-lg" title="Controlar" class="ui-button-primary"></button>
+          <button [routerLink]="['/matches', matchItem.matchId, 'control']" pButton icon="pi pi-check-circle fa-lg" title="Controlar"
+            class="ui-button-primary"></button>
         </div>
       </div>
     </div>

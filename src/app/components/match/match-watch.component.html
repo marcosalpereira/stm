@@ -2,8 +2,16 @@
   <p-panel>
     <p-header>
       <button pButton type="button" icon="pi pi-times" (click)="goBack()" style="float: right" class="ui-button-primary"></button>
-      <span>Assistir Partida - {{match.championship.name}}</span>
-      <div>Controlada por - {{match?.controller?.name}}</div>
+      <div>{{match.championship.name}}</div>
+      <div *ngIf="!match.events">
+        {{match.playerA.name}} x {{match.playerB.name}}
+      </div>
+      <div *ngIf="match.controller">
+        Controlada por - {{match.controller.name}}
+      </div>
+      <div *ngIf="!match.controller">
+        Ninguém está controlando essa partida
+      </div>
       <div>
         {{match.startDate | date : 'dd/MM/yy HH:mm'}} - {{match.endDate | date : 'dd/MM/yy HH:mm'}}
       </div>
@@ -12,7 +20,7 @@
       </div>
     </p-header>
 
-    <div class="ui-g">
+    <div class="ui-g" *ngIf="match.events">
       <div class="ui-g-4 ui-sm-12">
         <tsm-match-score [match]="match"></tsm-match-score>
       </div>

@@ -42,7 +42,6 @@ export class MatchControlComponent implements OnInit, OnDestroy {
   }
 
   setController(p: Player) {
-    console.log('p', p);
     this.match.controller = p ? p : null;;
     this.dataService.persist(this.match);
   }

@@ -17,21 +17,22 @@
         <tsm-match-score [match]="match"></tsm-match-score>
       </div>
     </div>
-    <div class="ui-g" *ngIf="match.controller && match.controller.name === controller.name && !match.finished">
+    <ng-container *ngIf="match.controller && match.controller.name === controller.name && !match.finished">
       <div class="ui-g">
         <div class="ui-g-12 no-padd">
           <button [disabled]="undo.length == 0" pButton type="button" class="ui-button-warning" label="Eventos: {{undo.length}} - desfazer o Ultimo"
             (click)="undoLastEvent()"></button>
         </div>
       </div>
+      <div class="ui-g">
+        <div class="ui-g-6 ui-sm-12 no-padd">
+          <tsm-match-events (event)="onEvent($event)" [match]="match" [playerNumber]="0"></tsm-match-events>
+        </div>
 
-      <div class="ui-g-6 ui-sm-12 no-padd">
-        <tsm-match-events (event)="onEvent($event)" [match]="match" [playerNumber]="0"></tsm-match-events>
+        <div class="ui-g-6 ui-sm-12 no-padd">
+          <tsm-match-events (event)="onEvent($event)" [match]="match" [playerNumber]="1"></tsm-match-events>
+        </div>
       </div>
-
-      <div class="ui-g-6 ui-sm-12 no-padd">
-        <tsm-match-events (event)="onEvent($event)" [match]="match" [playerNumber]="1"></tsm-match-events>
-      </div>
-    </div>
+    </ng-container>
   </p-panel>
 </ng-container>

@@ -3,6 +3,6 @@
     <button pButton type="button" [routerLink]="['/matches', 'new']" label="Criar Nova Partida"></button>
   </div>
   <div class="ui-toolbar-group-right" style="width: 200px">
-    <tsm-player-select [players]="players" (selected)="onSelected($event)" [player]="player"></tsm-player-select>
+    <tsm-player-select title="Usuário controlador" [players]="players" (selected)="onSelected($event)" [player]="player"></tsm-player-select>
   </div>
 </p-toolbar>

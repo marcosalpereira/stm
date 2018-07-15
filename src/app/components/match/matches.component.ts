@@ -25,7 +25,9 @@ export class MatchesComponent implements OnInit, OnDestroy, OnChanges {
     this.listMatchesSub = this.dataService.listMatches()
       .subscribe(matches => {
         this.matches = matches;
-        this.champsName = Array.from(new Set(this.matches.list.map(m => m.champName)));
+        if (matches) {
+          this.champsName = Array.from(new Set(this.matches.list.map(m => m.champName)));
+        }
       });
     this.listPlayersSub = this.dataService.listPlayers().subscribe(players => this.players = players);
     this.player = this.dataService.getUser();

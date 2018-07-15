@@ -28,8 +28,8 @@ export class MatchEditComponent implements OnInit {
     const champ = new Championship('');
     this.match =
       new Match(champ,
-        new Player(''),
-        new Player(''));
+        undefined,
+        undefined);
   }
 
   onSubmit() {

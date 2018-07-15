@@ -9,17 +9,17 @@
     </div>
     <div class="ui-g">
       <div class="ui-g-6">
-          <tsm-player-select label="Jogador 1" [players]="players" (selected)="onSelectedA($event)" [player]="match.playerA"></tsm-player-select>
+          <tsm-player-select required label="Jogador 1" [players]="players" (selected)="onSelectedA($event)" [player]="match.playerA"></tsm-player-select>
       </div>
       <div class="ui-g-6">
-          <tsm-player-select label="Jogador 2" [players]="players" (selected)="onSelectedB($event)" [player]="match.playerB"></tsm-player-select>
+          <tsm-player-select required label="Jogador 2" [players]="players" (selected)="onSelectedB($event)" [player]="match.playerB"></tsm-player-select>
       </div>
     </div>
     <div class="ui-g">
       <div class="ui-g-12">
           <label for="bestOf">Melhor de quantos sets</label>
           <div>
-            <p-spinner id="bestOf" name="bestOf" [(ngModel)]="match.bestOf" required></p-spinner>
+            <p-spinner pattern="[1-9]" id="bestOf" name="bestOf" [(ngModel)]="match.bestOf" required></p-spinner>
           </div>
       </div>
     </div>
@@ -33,7 +33,7 @@
     </div>
     <div class="ui-g">
       <div class="ui-g-12 buttons">
-        <button [disabled]="form.invalid" pButton type="submit" label="Salvar"></button>
+        <button [disabled]="form.invalid || !match.playerA || !match.playerB || match.playerA == match.playerB" pButton type="submit" label="Salvar"></button>
         <button pButton type="button" label="Voltar" (click)="goBack()"></button>
       </div>
     </div>
