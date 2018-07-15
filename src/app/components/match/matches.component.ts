@@ -10,14 +10,13 @@ import { Championship } from '../../model/championship';
   templateUrl: './matches.component.html',
   styleUrls: ['./matches.component.css']
 })
-export class MatchesComponent implements OnInit, OnDestroy, OnChanges {
+export class MatchesComponent implements OnInit, OnDestroy {
   matches: Matches;
   listMatchesSub: Subscription;
-  listPlayersSub: Subscription;
-  player = new Player('');
-  players: Player[] = [];
+  user: Player;
 
   champsName: string[]
+  userChangeSub: Subscription;
 
   constructor(private dataService: DataService) { }
 
@@ -29,22 +28,13 @@ export class MatchesComponent implements OnInit, OnDestroy, OnChanges {
           this.champsName = Array.from(new Set(this.matches.list.map(m => m.champName)));
         }
       });
-    this.listPlayersSub = this.dataService.listPlayers().subscribe(players => this.players = players);
-    this.player = this.dataService.getUser();
-
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    const playerChange = changes['player'];
-    if (playerChange) {
-      this.dataService.setUser(playerChange.currentValue);
-      this.player = playerChange.currentValue;
-    }
+    this.user = this.dataService.getUser();
+    this.userChangeSub = this.dataService.userChange$.subscribe(u => this.user = u);
   }
 
   ngOnDestroy() {
     this.listMatchesSub.unsubscribe();
-    this.listPlayersSub.unsubscribe();
+    this.userChangeSub.unsubscribe();
   }
 
 }

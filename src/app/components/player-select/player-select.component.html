@@ -1,6 +1,6 @@
 <label *ngIf="label" for="player">{{label}}</label>
 <div>
-  <p-dropdown required autoWidth="false" [style]="{'width':'80%'}" id="player" [options]="players" [(ngModel)]="player" placeholder="Jogador"
+  <p-dropdown required autoWidth="false" [style]="{'width':'80%'}" id="player" [options]="players" [(ngModel)]="player" placeholder="{{title}}"
     (onChange)="onChange($event)" optionLabel="name"></p-dropdown>
   <button type="button" title="Adicionar novo jogador" pButton icon="pi pi-user-plus fa-lg" (click)="showNewPlayer=true" class="ui-inputgroup-addon">
   </button>

@@ -8,6 +8,7 @@ import { Subject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class DataService {
+  userChange$ = new Subject<Player>();
   constructor(private storageService: StorageService) { }
 
   matchEvent(match: Match, event: MatchEvent): void {
@@ -74,11 +75,11 @@ export class DataService {
     if (p) {
       return JSON.parse(p);
     }
-    return new Player('');
   }
 
   setUser(player: Player) {
     localStorage.setItem('tsm.player', JSON.stringify(player));
+    this.userChange$.next(player);
   }
 
 }

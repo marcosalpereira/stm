@@ -11,6 +11,7 @@ export class PlayerSelectComponent implements OnInit {
   @Input() players: Player[];
   @Input() player: Player;
   @Input() label: string;
+  @Input() title = "Jogador";
   @Output() selected = new EventEmitter<Player>();
   showNewPlayer = false;
   playerName: string;

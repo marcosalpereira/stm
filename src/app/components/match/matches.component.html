@@ -1,7 +1,4 @@
 <tsm-toolbar></tsm-toolbar>
-
-<!-- <div class="ui-g"> -->
-<!-- <div class="ui-g-12"> -->
 <ng-container *ngIf="matches">
   <p-panel *ngFor="let champName of champsName">
     <p-header>{{champName}}</p-header>
@@ -10,12 +7,10 @@
         <input type="text" readonly pInputText [value]="matchItem.matchName">
         <div class="buttons">
           <button [routerLink]="['/matches', matchItem.matchId]" pButton icon="fa fa-eye fa-lg" title="Assistir" class="ui-button-success"></button>
-          <button [routerLink]="['/matches', matchItem.matchId, 'control']" pButton icon="pi pi-check-circle fa-lg" title="Controlar"
-            class="ui-button-primary"></button>
+          <button [routerLink]="['/matches', matchItem.matchId, 'control']" pButton icon="pi pi-check-circle fa-lg" [disabled]="!user"
+            [title]="user ? 'Controlar' : 'Selecione usuário controlador'" class="ui-button-primary"></button>
         </div>
       </div>
     </div>
   </p-panel>
 </ng-container>
-<!-- </div> -->
-<!-- </div> -->
