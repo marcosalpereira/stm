@@ -43,8 +43,19 @@ export class DataService {
       } else {
         lastSet.games.push(new MatchGame(lastSet.games.length + 1));
       }
-      match.serving = getOtherPlayer(match.serving);
     }
+
+    if (lastGame.tiebreak || lastGame.superTiebreak) {
+      let sum = lastGame.score[pontuador] + lastGame.score[otherPlayer];
+      if (sum % 2 === 1) {
+        match.serving = getOtherPlayer(match.serving);  
+      }
+    } else {
+      if (lastGame.finished) {
+        match.serving = getOtherPlayer(match.serving);
+      }
+    }
+
     if (!match.events) {match.events = [];}
     match.events.push(event);
     this.storageService.persistMatch(match);
