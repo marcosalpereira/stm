@@ -15,6 +15,9 @@ export class Match {
     public static readonly PLAYER_A: PlayerNumber = 0;
     public static readonly PLAYER_B: PlayerNumber = 1;
     public static readonly GAME_SCORES = [0, 15, 30, 40];
+    public static readonly GS_15 = 1;
+    public static readonly GS_30 = 2;
+    public static readonly GS_40 = 3;
 
     public id: number;
     public finished = false;

@@ -1,3 +1,12 @@
+.player {
+    border: 1px solid gray;
+    height: 35px;
+    padding-left: 7px;
+    vertical-align: middle;
+    margin-right: 2px;
+    margin-bottom: 2px
+}
+
 .score {
     border: 1px solid gray;
     width: 30px;
